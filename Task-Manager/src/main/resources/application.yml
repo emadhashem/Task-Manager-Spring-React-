@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: TaskManager
+  profiles:
+    active: dev
+
+springdoc:
+  default-produces-media-type: application/json
+
+server:
+  servlet:
+    context-path: /api/v1/
