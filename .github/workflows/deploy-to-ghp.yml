@@ -11,9 +11,12 @@ jobs:
       - name: Set executable permission for mvnw
         run: chmod +x Task-Manager/mvnw
 
+      - name: Check Java version
+        run: java -version
+
       - name: build backend spring
         working-directory: Task-Manager
-        run : ./mvnw clean package
+        run: ./mvnw clean package
 
   build-frontend:
     runs-on: ubuntu-latest
@@ -22,11 +25,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-#      - name: Use Node.js 18.x
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: "18.x"
-#          cache: 'npm'
+      #      - name: Use Node.js 18.x
+      #        uses: actions/setup-node@v3
+      #        with:
+      #          node-version: "18.x"
+      #          cache: 'npm'
 
       - name: install packages
         working-directory: Task-M-UI
