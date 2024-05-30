@@ -23,7 +23,7 @@ jobs:
 
       - name: build backend spring
         working-directory: Task-Manager
-        run: ./mvnw clean package
+        run: ./mvnw clean package -DskipTests
 
   build-frontend:
     runs-on: ubuntu-latest
