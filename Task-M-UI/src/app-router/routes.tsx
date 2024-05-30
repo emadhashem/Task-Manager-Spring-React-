@@ -4,7 +4,7 @@ import {store} from "../redux/store.ts";
 import App from "../App.tsx";
 import {ProtectedRoute} from "../common/protected-route/ProtectedRoute.tsx";
 import HomePage from "../pages/home-page/HomePage.tsx";
-import LoginPage from "../pages/ login-page/LoginPage.tsx";
+import LoginPage from "../pages/login-page/LoginPage.tsx";
 import RegisterPage from "../pages/register-page/RegisterPage.tsx";
 import ProjectsPage from "../pages/projects-page/ProjectsPage.tsx";
 import ProjectPage from "../pages/projects-page/project-page/ProjectPage.tsx";
