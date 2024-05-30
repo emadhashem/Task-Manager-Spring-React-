@@ -1,0 +1,59 @@
+services:
+  postgres:
+    container_name: postgres-taskM
+    image: postgres:alpine3.19
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: taskM
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - 5432:5432
+    networks:
+      - taskM-network
+    restart: unless-stopped
+
+  taskm-backend:
+    container_name: taskm-backend
+    build:
+      context: ./Task-Manager
+      dockerfile: Dockerfile
+    ports:
+      - '8088:8088'
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-taskM:5432/taskM
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=mysecretpassword
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - postgres
+    networks:
+      - taskM-network
+    volumes:
+      - taskm:/tmp
+
+  taskm-frontend:
+    container_name: taskm-frontend
+    build:
+      context: ../Task-M-UI
+      dockerfile: Dockerfile
+    ports:
+      - '5173:80'
+    depends_on:
+      - taskm-backend
+    networks:
+      - taskM-network
+    volumes:
+      - taskm:/ui
+
+volumes:
+  postgres:
+    driver: local
+  taskm:
+    driver: local
+
+networks:
+  taskM-network:
+    driver: bridge
