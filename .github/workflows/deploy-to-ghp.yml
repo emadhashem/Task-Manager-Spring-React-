@@ -8,9 +8,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set executable permission for mvnw
-        run: chmod +x Task-Manager/mvnw
-
       - name: Check Java version
         run: java -version
 
@@ -21,6 +18,8 @@ jobs:
           java-version: 17
           java-distribution: temurin
           maven-version: 3.8.7
+      - name: Set executable permission for mvnw
+        run: chmod +x Task-Manager/mvnw
 
       - name: build backend spring
         working-directory: Task-Manager
