@@ -17,7 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
@@ -31,7 +31,7 @@ public class BeansConfig {
         final CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
         configuration
-                .setAllowedOrigins(Collections.singletonList("http://localhost:5173"));
+                .setAllowedOrigins(List.of("http://localhost:5173", "http://taskm-frontend:5173", "http://4.221.72.146:5173"));
         configuration.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.ORIGIN,
                 HttpHeaders.CONTENT_TYPE,

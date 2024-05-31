@@ -1,4 +1,5 @@
 services:
+
   postgres:
     container_name: postgres-taskM
     image: postgres:alpine3.19
@@ -11,8 +12,6 @@ services:
       - postgres:/data/postgres
     ports:
       - 5432:5432
-    networks:
-      - taskM-network
     restart: unless-stopped
 
   taskm-backend:
@@ -29,22 +28,21 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     depends_on:
       - postgres
-    networks:
-      - taskM-network
     volumes:
       - taskm:/tmp
 
   taskm-frontend:
     container_name: taskm-frontend
     build:
-      context: ../Task-M-UI
+      context: ./Task-M-UI
       dockerfile: Dockerfile
     ports:
       - '5173:80'
+    environment:
+      - REACT_APP_BASE_URL=http://taskm-backend:8088
+      - REACT_APP_ENV=prod
     depends_on:
       - taskm-backend
-    networks:
-      - taskM-network
     volumes:
       - taskm:/ui
 
@@ -53,7 +51,3 @@ volumes:
     driver: local
   taskm:
     driver: local
-
-networks:
-  taskM-network:
-    driver: bridge

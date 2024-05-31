@@ -13,13 +13,23 @@
  */
 
 
-import type { Configuration } from './configuration';
+import type {Configuration} from './configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import type {AxiosPromise, AxiosInstance, RawAxiosRequestConfig} from 'axios';
 import globalAxios from 'axios';
 
-export const BASE_PATH = "http://localhost:8088/api/v1".replace(/\/+$/, "");
+
+function getBaseUrl() {
+    let viteBaseurl = "http://taskm-backend:8088"
+    const env = import.meta.env.MODE as string
+    if (env !== "production") {
+        viteBaseurl = "http://localhost:8088"
+    }
+    return viteBaseurl
+}
+
+export const BASE_PATH = getBaseUrl() + "/api/v1".replace(/\/+$/, "");
 
 /**
  *
@@ -82,5 +92,4 @@ interface ServerMap {
  *
  * @export
  */
-export const operationServerMap: ServerMap = {
-}
+export const operationServerMap: ServerMap = {}
