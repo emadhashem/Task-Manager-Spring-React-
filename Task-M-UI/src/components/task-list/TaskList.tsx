@@ -37,6 +37,7 @@ const TaskList = ({newTask}: { newTask: CreateTaskResponse | null }) => {
                 }
                 return task;
             }))
+            toast('Task updated successfully', reactToastConfig('info'))
         } catch (e: any) {
             let code = 0;
             if (e instanceof AxiosError) {

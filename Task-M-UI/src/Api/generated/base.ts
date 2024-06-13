@@ -20,8 +20,7 @@ import type {AxiosPromise, AxiosInstance, RawAxiosRequestConfig} from 'axios';
 import globalAxios from 'axios';
 
 
-
-export const BASE_PATH = "http://4.221.72.146:8088/api/v1";
+export const BASE_PATH = "http://" + import.meta.env.PROD ? "4.221.72.146" : "localhost" + ":8088/api/v1";
 
 /**
  *
