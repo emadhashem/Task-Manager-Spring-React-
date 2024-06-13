@@ -21,7 +21,7 @@ import globalAxios from 'axios';
 
 
 function getBaseUrl() {
-    let viteBaseurl = "http://taskm-backend:8088"
+    let viteBaseurl = "http://4.221.72.146:8088"
     const env = import.meta.env.MODE as string
     if (env !== "production") {
         viteBaseurl = "http://localhost:8088"
