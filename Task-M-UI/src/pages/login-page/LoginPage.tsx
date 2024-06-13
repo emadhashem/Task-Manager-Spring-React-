@@ -22,6 +22,7 @@ const defaultTheme = createTheme();
 
 function LoginPage() {
     const apiConfig = new Configuration()
+    console.log(apiConfig.basePath)
     const authApi = new AuthenticationApi(apiConfig);
     const {login} = useAuth();
     const [, setUserId] = useLocalStorage("userId", null)
