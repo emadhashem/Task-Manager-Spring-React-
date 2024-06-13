@@ -20,16 +20,8 @@ import type {AxiosPromise, AxiosInstance, RawAxiosRequestConfig} from 'axios';
 import globalAxios from 'axios';
 
 
-function getBaseUrl() {
-    let viteBaseurl = "http://4.221.72.146:8088"
-    const env = import.meta.env.MODE as string
-    if (env !== "production") {
-        viteBaseurl = "http://4.221.72.146:8088"
-    }
-    return viteBaseurl
-}
 
-export const BASE_PATH = getBaseUrl() + "/api/v1".replace(/\/+$/, "");
+export const BASE_PATH = "http://4.221.72.146:8088/api/v1";
 
 /**
  *
